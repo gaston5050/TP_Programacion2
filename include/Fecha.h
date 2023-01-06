@@ -21,5 +21,6 @@ public:
     int getMes();
     int getAnio();
 
+    void setFecha(int dia, int mes, int anio);
 };
 #endif // FECHA_H_INCLUDED

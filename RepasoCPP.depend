@@ -1,0 +1,34 @@
+# depslib dependency file v1.0
+1672922092 source:c:\users\gastona\documents\ejerciciosprogramacionii\src\estudiante.cpp
+	<iostream>
+	"../include/Estudiante.h"
+	"../include/Fecha.h"
+
+1672913711 c:\users\gastona\documents\ejerciciosprogramacionii\include\estudiante.h
+	"Fecha.h"
+
+1673001479 c:\users\gastona\documents\ejerciciosprogramacionii\include\fecha.h
+
+1673001939 source:c:\users\gastona\documents\ejerciciosprogramacionii\src\fecha.cpp
+	<iostream>
+	<string>
+	<ctime>
+	"../include/Fecha.h"
+
+1673017433 source:c:\users\gastona\documents\ejerciciosprogramacionii\main.cpp
+	<iostream>
+	<locale.h>
+	"include/Fecha.h"
+	"include/Estudiante.h"
+	"include/Examen.h"
+
+1673019614 source:c:\users\gastona\documents\ejerciciosprogramacionii\src\examen.cpp
+	<iostream>
+	<cstring>
+	<locale.h>
+	"../include/Fecha.h"
+	"../include/Estudiante.h"
+	"../include/Examen.h"
+
+1673019734 c:\users\gastona\documents\ejerciciosprogramacionii\include\examen.h
+

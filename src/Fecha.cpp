@@ -49,3 +49,11 @@
     int Fecha::getDia(){return _dia;}
     int Fecha::getMes(){return _mes;}
     int Fecha::getAnio(){return _anio;}
+
+    void Fecha::setFecha(int dia, int mes, int anio){
+
+        _dia = dia;
+        _mes = mes;
+        _anio = anio;
+
+    }
