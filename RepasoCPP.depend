@@ -32,3 +32,35 @@
 
 1673019734 c:\users\gastona\documents\ejerciciosprogramacionii\include\examen.h
 
+1673024806 source:c:\users\gastona\documents\mis archivos de origen de datos\tp_programacion2\main.cpp
+	<iostream>
+	"include/Fecha.h"
+	"include/Estudiante.h"
+	"include/Examen.h"
+
+1673024365 c:\users\gastona\documents\mis archivos de origen de datos\tp_programacion2\include\fecha.h
+
+1672913711 c:\users\gastona\documents\mis archivos de origen de datos\tp_programacion2\include\estudiante.h
+	"Fecha.h"
+
+1672922092 source:c:\users\gastona\documents\mis archivos de origen de datos\tp_programacion2\src\estudiante.cpp
+	<iostream>
+	"../include/Estudiante.h"
+	"../include/Fecha.h"
+
+1673019614 source:c:\users\gastona\documents\mis archivos de origen de datos\tp_programacion2\src\examen.cpp
+	<iostream>
+	<cstring>
+	<locale.h>
+	"../include/Fecha.h"
+	"../include/Estudiante.h"
+	"../include/Examen.h"
+
+1673019734 c:\users\gastona\documents\mis archivos de origen de datos\tp_programacion2\include\examen.h
+
+1673024365 source:c:\users\gastona\documents\mis archivos de origen de datos\tp_programacion2\src\fecha.cpp
+	<iostream>
+	<string>
+	<ctime>
+	"../include/Fecha.h"
+
