@@ -25,7 +25,7 @@ public:
     float getCalificacion();
     char getTipoExamen();
 
-
+     bool guardarEnDisco();
     std::string toString();
 
 
@@ -35,9 +35,10 @@ public:
 
 };
 
-   bool guardarEnDisco(Examen examen);
+   void cargarExamenes(int cantidad);
    bool listar();
    bool leerRegistroX(int posicion);
+   int BuscarMejorNota(int materia, int legajo);
 
 
 #endif // EXAMEN_H_INCLUDED

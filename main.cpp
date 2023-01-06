@@ -7,7 +7,9 @@ using namespace std;
 
 int main()
 {
-listar();
+
+ int x = BuscarMejorNota(6578,13);
+ cout<< x;
 
     return 0;
 }
