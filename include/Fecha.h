@@ -22,5 +22,8 @@ public:
     int getAnio();
 
     void setFecha(int dia, int mes, int anio);
+
+    bool operator == (Fecha aux);
+    bool operator != (Fecha aux);
 };
 #endif // FECHA_H_INCLUDED

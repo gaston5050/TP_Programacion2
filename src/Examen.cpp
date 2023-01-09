@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstring>
 #include <locale.h>
-
+#include <iomanip>
 #include "../include/Fecha.h"
 #include "../include/Estudiante.h"
 #include "../include/Examen.h"
@@ -49,11 +49,28 @@
      FILE *p = fopen("examenes.dat", "rb");
      Examen aux;
 
+     std::cout << "LISTADO DE EXAMENES "<<std::endl;
+     std::cout<<"------------------------------------------------------------------------"<<std::endl;
+    std::cout<< std::setw(6) << "LEGAJO";
+    std::cout<< std::setw(15) << "ID_MATERIA";
+    std::cout<< std::setw(10) << "FECHA";
+    std::cout<< std::setw(15) << "TIPO";
+    std::cout<< std::setw(18) << "CALIFICACION";
+    std::cout <<std::endl;
+     std::cout<<"------------------------------------------------------------------------------------"<<std::endl;
      if(p==NULL) { return false;}
 
      while(fread( &aux , sizeof(Examen), 1, p)){
 
-        std::cout<< aux.toString() <<std::endl;
+
+    std::cout<< std::setw(6) << aux.getLegajo();
+    std::cout<< std::setw(10) << aux.getMateria();
+    std::cout<< std::setw(18) << aux.getFecha().toString();
+    std::cout<< std::setw(11) << aux.getTipoExamen();
+    std::cout<< std::setw(14) << aux.getCalificacion();
+
+    std::cout <<std::endl;
+       // std::cout<< aux.toString() <<std::endl;
 
 
      }
@@ -64,7 +81,23 @@
 
      }
 
+    bool leerRegistro(Examen &aux){
 
+        Examen aux2;
+
+        FILE *p = fopen("examenes.dat", "rb");
+        if(p== NULL) return false;
+
+        while(fread(&aux2,sizeof(Examen), 1, p)){
+
+           if(aux.getFecha() == aux2.getFecha() && aux.getLegajo() == aux2.getLegajo() && aux.getMateria()== aux2.getMateria() ){
+
+              return false;
+              }
+        }
+        return true;
+
+    }
 
     bool leerRegistroX(int posicion){
 
@@ -93,13 +126,16 @@
   bool bandera = true;
 
   int mejorNota = NULL;
-
+    int leg, mat;
 
 
   FILE  *p = fopen("examenes.dat", "rb");
   if(p==NULL){ return -2;}
 
   while(fread(&aux, sizeof aux, 1, p)){
+    leg = aux.getLegajo();
+    mat =aux.getMateria();
+
     if(aux.getLegajo() == legajo && aux.getMateria() == materia){
 
        if(bandera){
@@ -157,13 +193,22 @@ void cargarExamenes(int cantidad){
         std::cin>> tipoExa;
         std::cout<<std::endl;
 
+
+
         aux.setLegajo(legajo);
         aux.setMateria(materia);
         aux.setCalificacion(calificacion);
         aux.setTipoExamen(tipoExa);
-        aux.guardarEnDisco();
 
+        if(leerRegistro(aux)){
+
+        aux.guardarEnDisco();
         cantidad --;
+        }
+        else {
+        std::cout<< " REGISTRO REPETIDO "<<std::endl;
+        return;
+        }
 
 
     }
