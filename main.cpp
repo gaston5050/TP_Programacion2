@@ -8,6 +8,7 @@ using namespace std;
 
 int main()
 {
+
     int opcion;
     setlocale(LC_CTYPE, "Spanish");
 
@@ -17,6 +18,7 @@ cout<<" ----------------------------"<<endl;
 cout<<"1 - CARGAR EXAMEN"<<endl;
 cout<<"2 - LISTAR EXÁMENES"<<endl;
 cout<<"3 - BUSCAR MEJOR NOTA"<<endl;
+cout<<"4 - MODIFICAR REGISTRO"<<endl;
 cout<<" ----------------------------"<<endl;
 cout<<"0 - SALIR"<<endl;
 
@@ -57,14 +59,27 @@ case 3:
             system("cls");
 
             cout<< " LA MEJOR NOTA DEL LEGAJO " << leg << " EN LA MATERIA  " << mat << " FUE " << BuscarMejorNota(mat,leg);
-            cout <<ewndl;
+            cout <<endl;
             system("pause");
             system("cls");
         }
 
     break;
 case 4:
+    int pos;
+    system("cls");
+
+    cout<< "INGRESE POSICION: ";
+    cin>> pos;
+
+    leerRegistroX(pos);
     break;
+case 5:
+    system("cls");
+    cout<< " CANTIDAD DE REGISTROS EXAMEN: " << cantidad();
+    cout<<endl;
+    system("pause");
+    system("cls");
 case 0:
     break;
 
