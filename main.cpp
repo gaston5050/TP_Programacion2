@@ -10,6 +10,7 @@ int main()
 {
 
     int opcion;
+    Estudiante aux;
     setlocale(LC_CTYPE, "Spanish");
 
 while (true){
@@ -19,6 +20,9 @@ cout<<"1 - CARGAR EXAMEN"<<endl;
 cout<<"2 - LISTAR EXÁMENES"<<endl;
 cout<<"3 - BUSCAR MEJOR NOTA"<<endl;
 cout<<"4 - MODIFICAR REGISTRO"<<endl;
+cout<<"5 - CANTIDAD EXAMENES"<<endl;
+cout<<"6 - CARGAR ESTUDIANTE"<<endl;
+cout<<"7 - LISTAR ESTUDIANTES"<<endl;
 cout<<" ----------------------------"<<endl;
 cout<<"0 - SALIR"<<endl;
 
@@ -80,6 +84,32 @@ case 5:
     cout<<endl;
     system("pause");
     system("cls");
+
+
+
+case 6:
+            system("cls");
+            aux.cargarEstudiante();
+            system("pause");
+            system("cls");
+
+
+
+    break;
+
+
+
+
+case 7:
+    system("cls");
+    aux.listarEstudiantes();
+    system("pause");
+    system("cls");
+
+
+
+    break;
+
 case 0:
     break;
 

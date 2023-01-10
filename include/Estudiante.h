@@ -25,6 +25,12 @@ public:
     int getEdad();
 
 
+    bool guardarEnDisco();
+
+
+void cargarEstudiante();
+bool listarEstudiantes();
 };
+
 
 #endif // ESTUDIANTE_H_INCLUDED
