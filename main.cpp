@@ -32,7 +32,7 @@ switch(opcion){
 
 case 1:
     system("cls");
-    cargarExamenes(1);
+    cargarExamenes(500);
 
     system("pause");
     system("cls");
@@ -110,7 +110,17 @@ case 7:
 
     break;
 
-case 0:
+case 8:
+
+    system("cls");
+    reporteA();
+      system("pause");
+    system("cls");
+
+
+    break;
+
+    case 0:
     break;
 
 

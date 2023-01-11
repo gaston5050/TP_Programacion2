@@ -234,7 +234,8 @@
 void cargarExamenes(int cantidad){
 
     Examen aux;
-    int legajo, materia;
+    cantidad = 500;
+    int legajo, materia, d,m,a;
     float calificacion;
     char tipoExa;
 
@@ -246,30 +247,46 @@ void cargarExamenes(int cantidad){
         std::cout<< "MATERIA: ";
         std::cin>> materia;
         std::cout<<std::endl;
+
+        std::cout<< "DIA EXAMEN: ";
+        std::cin>> d;
+         std::cout<<std::endl;
+        std::cout<< "MES DE EXAMEN: ";
+        std::cin>> m;
+         std::cout<<std::endl;
+        std::cout<< "ANIO DE EXAMEN: ";
+        std::cin>> a;
+        std::cout<<std::endl;
         std::cout<< "CALIFICACION: ";
         std::cin>> calificacion;
+     //   std::cout<< "TIPO DE EXAMEN: ";
+       // std::cin>> tipoExa;
+
         std::cout<<std::endl;
-        std::cout<< "TIPO DE EXAMEN: ";
-        std::cin>> tipoExa;
-        std::cout<<std::endl;
+
+
 
 
 
         aux.setLegajo(legajo);
         aux.setMateria(materia);
         aux.setCalificacion(calificacion);
-        aux.setTipoExamen(tipoExa);
-
-        if(leerRegistro(aux)){
-
-        aux.guardarEnDisco();
+     //   aux.setTipoExamen(tipoExa);
+        aux.setFecha(d,m,a);
+        std::cout<< cantidad <<std::endl;
         cantidad --;
-        }
+       aux.guardarEnDisco();
+       /*
+        if(leerRegistro(aux)){
+       cantidad --;
+
+    aux.guardarEnDisco();
+       }
         else {
         std::cout<< " REGISTRO REPETIDO "<<std::endl;
         return;
         }
-
+*/
 
     }
 

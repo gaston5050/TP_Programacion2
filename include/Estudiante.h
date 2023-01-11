@@ -26,11 +26,15 @@ public:
 
 
     bool guardarEnDisco();
-
+    std::string toString();
 
 void cargarEstudiante();
 bool listarEstudiantes();
 };
+
+bool aproboMas2(int legajo);
+bool leerArchivoEstudiantes();
+ void reporteA();
 
 
 #endif // ESTUDIANTE_H_INCLUDED
