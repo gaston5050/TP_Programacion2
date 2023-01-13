@@ -8,9 +8,19 @@ using namespace std;
 
 int main()
 {
+      Estudiante aux;
+
+system("pause");
+
+
+cout<< cantidadEstudiantes();
+cout<< endl;
+cout<< cantidad_registros_estudiantes();
+
+
 
     int opcion;
-    Estudiante aux;
+   // Estudiante aux;
     setlocale(LC_CTYPE, "Spanish");
 
 while (true){
@@ -23,6 +33,8 @@ cout<<"4 - MODIFICAR REGISTRO"<<endl;
 cout<<"5 - CANTIDAD EXAMENES"<<endl;
 cout<<"6 - CARGAR ESTUDIANTE"<<endl;
 cout<<"7 - LISTAR ESTUDIANTES"<<endl;
+cout<<"9 - MODIFICAR ESTUDIANTE"<<endl;
+
 cout<<" ----------------------------"<<endl;
 cout<<"0 - SALIR"<<endl;
 
@@ -120,7 +132,24 @@ case 8:
 
     break;
 
-    case 0:
+    case 9:
+    int legajo;
+
+
+
+    system("cls");
+    std::cout << "INGRESE LEGAJO: "<<std::endl;
+    cin >> legajo;
+    system("cls");
+    aux.modificarEstudiante(legajo);
+    system("pause");    system("cls");
+
+
+
+
+
+    break;
+   case 0:
     break;
 
 
@@ -143,3 +172,5 @@ case 8:
 
     return 0;
 }
+
+

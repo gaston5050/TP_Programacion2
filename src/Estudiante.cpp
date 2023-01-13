@@ -1,4 +1,4 @@
-#include <string>
+#include <cstring>
 #include <iostream>
 #include <iomanip>
 #include "../include/Fecha.h"
@@ -8,12 +8,14 @@
 
 void Estudiante::setNombre(std::string nombre)
 {
-    _nombre = nombre;
+    strcpy(_nombre,nombre.c_str() );
+   // _nombre = nombre;
 }
 
 void Estudiante::setApellido(std::string apellido)
 {
-    _apellido = apellido;
+    strcpy(_apellido, apellido.c_str());
+    //_apellido = apellido;
 }
 
 void Estudiante::setFechaNac (int d, int m, int a)
@@ -30,11 +32,14 @@ void Estudiante::setLegajo(int legajo)
 
 std::string Estudiante::getNombre()
 {
-    return _nombre;
+    std::string nombre;
+    nombre = _nombre;
+    return nombre;
 }
 std::string Estudiante::getApellido()
 {
-    return _apellido;
+    std::string apellido (_apellido);
+    return apellido;
 }
 int Estudiante::getLegajo()
 {
@@ -68,6 +73,299 @@ int Estudiante::getEdad()
     else return edad;
 
 }
+void Estudiante::cargarEstudiante()
+{
+
+
+    std::string nombre, apellido;
+    int legajo, dia, mes, anio;
+
+
+    std::cout<< " INGRESE LEGAJO ESTUDIANTE: " <<std::endl;
+    std::cin>>legajo;
+
+    while(legajo != 0)
+    {
+
+        std::cout<< " INGRESE APELLIDO ESTUDIANTE: " <<std::endl;
+        std::cin>>apellido;
+        std::cout<< " INGRESE NOMBRE ESTUDIANTE: " <<std::endl;
+        std::cin>>nombre;
+        std::cout<< " DIA NAC: " <<std::endl;
+        std::cin>>dia;
+        std::cout<< " MES NAC: " <<std::endl;
+        std::cin>>mes;
+        std::cout<< " DIA ANIO: " <<std::endl;
+        std::cin>>anio;
+
+
+        this->setApellido(apellido);
+        this->setNombre(nombre);
+        this->setLegajo(legajo);
+        this->setFechaNac(dia,mes, anio);
+
+        this->guardarEnDisco();
+
+        std::cout<< " INGRESE LEGAJO ESTUDIANTE: " <<std::endl;
+        std::cin>>legajo;
+    }
+}
+
+bool Estudiante::leerEstudianteX(int posicion){
+
+        FILE *p = fopen("estudiantes.gas","rb");
+        if(p == NULL){ return false;}
+
+        fseek(p, sizeof(Estudiante) * posicion, SEEK_SET);
+        bool leyo = fread(this, sizeof (Estudiante), 1,p);
+        fclose(p);
+        return leyo;
+
+
+}
+bool Estudiante::guardarEnDisco()
+{
+
+
+    FILE *p = fopen("estudiantes.gas", "ab");
+    if(p == NULL) return false;
+
+    bool escribio = fwrite(this, sizeof (Estudiante),1, p);
+
+    fclose(p);
+
+    return escribio;
+
+}
+
+bool Estudiante::listarEstudiantes()
+{
+
+    FILE *p= fopen("estudiantes.gas", "rb");
+    if(p== NULL) return false;
+
+    std::cout<< std::setw(10) << "LEGAJO";
+    std::cout<< std::setw(15) << "APELLIDO";
+    std::cout<< std::setw(15) << "NOMBRE";
+    std::cout<< std::setw(15) << "FECHANAC";
+
+    std::cout<<std::endl;
+    std::cout<<std::endl;
+
+    while(fread(this,sizeof(Estudiante), 1, p))
+    {
+
+
+
+        std::cout<< std::setw(10)<< this->getLegajo();
+
+        std::cout<< std::setw(15)<< this->getNombre();
+        std::cout<< std::setw(15)<< this->getApellido();
+        std::cout<< std::setw(15)<<  this->getFecha().toString();
+        std::cout<<std::endl;
+
+    }
+
+    std::cout<<std::endl;
+    std::cout<<std::endl;
+    std::cout<<std::endl;
+
+
+
+
+
+
+
+}
+
+std::string Estudiante::toString(){
+
+    std::string texto;
+
+
+
+    texto = " LEGAJO " + std::to_string(this->getLegajo()) + " NOMBRE " + this->getNombre() + " APELLIDO " + this->getApellido();
+
+    return texto;
+
+}
+
+
+
+
+
+
+
+void reporteA()
+{
+
+        Estudiante aux;
+        bool bandera = true;
+        FILE *p = fopen("estudiantes.gas", "rb");
+        if(p==NULL) return;
+
+        while( fread(&aux, sizeof(Estudiante), 1, p)){
+
+
+                if(aproboMas2(aux.getLegajo())){
+
+                   if(bandera){
+
+    std::cout<< std::setw(10) << "LEGAJO";
+    std::cout<< std::setw(15) << "APELLIDO";
+    std::cout<< std::setw(15) << "NOMBRE";
+
+
+    std::cout<<std::endl;
+
+    bandera = false;
+
+
+                   }
+                    std::cout<< std::setw(10)<< aux.getLegajo();
+
+        std::cout<< std::setw(15)<< aux.getNombre();
+        std::cout<< std::setw(15)<< aux.getApellido();
+
+        std::cout<<std::endl;
+
+
+
+
+
+
+
+                   }
+
+
+}
+
+
+
+    }
+
+
+ bool aproboMas2(int legajo){
+
+ Examen reg;
+ int contador = 0;
+    Fecha hoy;
+
+
+ FILE *p = fopen("examenes.dat", "rb");
+
+ if (p == NULL) {return false;}
+
+    while(fread(&reg, sizeof(Examen), 1,p)){
+
+        if(reg.getLegajo()== legajo && reg.getCalificacion()<6&& reg.getFecha().getAnio() == 2022){
+
+
+            contador++;
+        }
+
+    }
+
+    if(contador >1 ) return true;
+    else return false;
+
+
+
+ }
+
+
+int cantidad_registros_estudiantes(){
+    FILE *p = fopen("estudiantes.gas", "rb");
+    if (p == NULL){
+        return 0;
+    }
+    size_t bytes;
+    int cant_reg;
+
+    fseek(p, 0, SEEK_END);
+    bytes = ftell(p);
+    fclose(p);
+    cant_reg = bytes / sizeof(Estudiante);
+    return cant_reg;
+
+}
+
+
+
+int cantidadEstudiantes(){
+
+    FILE *p = fopen("estudiantes.gas", "rb");
+    if (p == NULL )  return -2;
+
+    fseek(p,0,SEEK_END);
+
+        int num = ftell(p)/ sizeof(Estudiante);
+
+        return num;
+
+}
+
+bool Estudiante::modificarEstudiante(int legajo){
+
+    std::string nombre, apellido;
+    int lega, dia, mes, anio;
+
+
+
+    FILE *p = fopen("estudiantes.gas", "rb+");
+    if (p== NULL)return false;
+    int pos = 0;
+    Estudiante aux;
+    while(aux.leerEstudianteX(pos)){
+
+        if (aux.getLegajo()== legajo){
+
+            fseek(p, ftell(p)- sizeof(Estudiante) , SEEK_CUR);
+
+
+         //   std::cout<< " INGRESE LEGAJO ESTUDIANTE: " <<std::endl;
+  //  std::cin>>lega;
+
+
+    {
+
+        std::cout<< " INGRESE APELLIDO ESTUDIANTE: " <<std::endl;
+        std::cin>>apellido;
+        std::cout<< " INGRESE NOMBRE ESTUDIANTE: " <<std::endl;
+        std::cin>>nombre;
+        std::cout<< " DIA NAC: " <<std::endl;
+        std::cin>>dia;
+        std::cout<< " MES NAC: " <<std::endl;
+        std::cin>>mes;
+        std::cout<< " DIA ANIO: " <<std::endl;
+        std::cin>>anio;
+
+
+        this->setApellido(apellido);
+        this->setNombre(nombre);
+        this->setLegajo(legajo);
+        this->setFechaNac(dia,mes, anio);
+
+       fwrite(this, sizeof(Estudiante),1,p);
+       fclose(p);
+
+
+        return true;
+
+            }
+
+
+        }
+
+
+    }
+
+
+
+    return true;
+
+}
+
 /*
 1004
 52
@@ -3070,142 +3368,5 @@ int Estudiante::getEdad()
 2022
 3
 
-*/
-
-
-void Estudiante::cargarEstudiante()
-{
-
-
-    std::string nombre, apellido;
-    int legajo, dia, mes, anio;
-
-
-    std::cout<< " INGRESE LEGAJO ESTUDIANTE: " <<std::endl;
-    std::cin>>legajo;
-
-    while(legajo != 0)
-    {
-
-        std::cout<< " INGRESE APELLIDO ESTUDIANTE: " <<std::endl;
-        std::cin>>apellido;
-        std::cout<< " INGRESE NOMBRE ESTUDIANTE: " <<std::endl;
-        std::cin>>nombre;
-        std::cout<< " DIA NAC: " <<std::endl;
-        std::cin>>dia;
-        std::cout<< " MES NAC: " <<std::endl;
-        std::cin>>mes;
-        std::cout<< " DIA ANIO: " <<std::endl;
-        std::cin>>anio;
-
-
-        this->setApellido(apellido);
-        this->setNombre(nombre);
-        this->setLegajo(legajo);
-        this->setFechaNac(dia,mes, anio);
-
-        this->guardarEnDisco();
-
-        std::cout<< " INGRESE LEGAJO ESTUDIANTE: " <<std::endl;
-        std::cin>>legajo;
-    }
-}
-
-
-bool Estudiante::guardarEnDisco()
-{
-
-
-    FILE *p = fopen("estudiantes.gas", "ab");
-    if(p == NULL) return false;
-
-    bool escribio = fwrite(this, sizeof (Estudiante),1, p);
-
-    fclose(p);
-
-    return escribio;
-
-}
-
-bool Estudiante::listarEstudiantes()
-{
-
-    FILE *p= fopen("estudiantes.gas", "rb");
-    if(p== NULL) return false;
-
-    std::cout<< std::setw(10) << "LEGAJO";
-    std::cout<< std::setw(15) << "APELLIDO";
-    std::cout<< std::setw(15) << "NOMBRE";
-    std::cout<< std::setw(15) << "FECHANAC";
-
-    std::cout<<std::endl;
-    std::cout<<std::endl;
-
-    while(fread(this,sizeof(Estudiante), 1, p))
-    {
-
-
-
-        std::cout<< std::setw(10)<< this->getLegajo();
-
-        std::cout<< std::setw(15)<< this->getNombre();
-        std::cout<< std::setw(15)<< this->getApellido();
-        std::cout<< std::setw(15)<<  this->getFecha().toString();
-        std::cout<<std::endl;
-
-    }
-
-    std::cout<<std::endl;
-    std::cout<<std::endl;
-    std::cout<<std::endl;
-
-
-
-
-
-
-
-}
-
-std::string Estudiante::toString(){
-
-    std::string texto;
-
-
-
-    texto = " LEGAJO " + std::to_string(this->getLegajo()) + " NOMBRE " + this->getNombre() + "APELLIDO" + this->getApellido();
-
-    return texto;
-
-}
-
-
-
-
-
-
-
-void reporteA()
-{
-
-        Estudiante aux;
-
-        FILE *p = fopen("estudiantes.gas", "rb");
-        if(p==NULL) return;
-
-        while( fread(&aux, sizeof(Estudiante), 1, p)){
-        std::cout<< "si"<<std::endl;
-        if(aux.getLegajo() == 1000){
-            std::cout<< aux.getApellido()<< std::endl;
-
-        }
-}
-
-
-
-    }
-
-
-    /*
     31
     */

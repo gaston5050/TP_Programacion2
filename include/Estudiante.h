@@ -5,8 +5,8 @@
 class Estudiante{
 
 private:
-    std::string _nombre;
-    std::string _apellido;
+     char _nombre[50]{};
+     char _apellido[50]{};
     Fecha _fechaNac;
     int _legajo;
 
@@ -30,8 +30,14 @@ public:
 
 void cargarEstudiante();
 bool listarEstudiantes();
+bool leerEstudianteX(int posicion);
+bool modificarEstudiante(int legajo);
+
 };
 
+
+int cantidad_registros_estudiantes();
+int cantidadEstudiantes();
 bool aproboMas2(int legajo);
 bool leerArchivoEstudiantes();
  void reporteA();

@@ -32,7 +32,7 @@
 
 1673019734 c:\users\gastona\documents\ejerciciosprogramacionii\include\examen.h
 
-1673465553 source:c:\users\gastona\documents\mis archivos de origen de datos\tp_programacion2\main.cpp
+1673614335 source:c:\users\gastona\documents\mis archivos de origen de datos\tp_programacion2\main.cpp
 	<iostream>
 	"include/Fecha.h"
 	"include/Estudiante.h"
@@ -41,11 +41,11 @@
 
 1673267664 c:\users\gastona\documents\mis archivos de origen de datos\tp_programacion2\include\fecha.h
 
-1673460722 c:\users\gastona\documents\mis archivos de origen de datos\tp_programacion2\include\estudiante.h
+1673613959 c:\users\gastona\documents\mis archivos de origen de datos\tp_programacion2\include\estudiante.h
 	"Fecha.h"
 
-1673466034 source:c:\users\gastona\documents\mis archivos de origen de datos\tp_programacion2\src\estudiante.cpp
-	<string>
+1673615652 source:c:\users\gastona\documents\mis archivos de origen de datos\tp_programacion2\src\estudiante.cpp
+	<cstring>
 	<iostream>
 	<iomanip>
 	"../include/Fecha.h"
