@@ -33,6 +33,7 @@ cout<<"4 - MODIFICAR REGISTRO"<<endl;
 cout<<"5 - CANTIDAD EXAMENES"<<endl;
 cout<<"6 - CARGAR ESTUDIANTE"<<endl;
 cout<<"7 - LISTAR ESTUDIANTES"<<endl;
+cout<<"7 - REPORTE A"<<endl;
 cout<<"9 - MODIFICAR ESTUDIANTE"<<endl;
 
 cout<<" ----------------------------"<<endl;

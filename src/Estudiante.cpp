@@ -208,6 +208,7 @@ void reporteA()
 
 
                 if(aproboMas2(aux.getLegajo())){
+                if(aproboMas2(aux.getLegajo())){
 
                    if(bandera){
 
@@ -221,7 +222,7 @@ void reporteA()
     bandera = false;
 
 
-                   }
+                  }
                     std::cout<< std::setw(10)<< aux.getLegajo();
 
         std::cout<< std::setw(15)<< aux.getNombre();
@@ -243,7 +244,7 @@ void reporteA()
 
 
     }
-
+}
 
  bool aproboMas2(int legajo){
 
